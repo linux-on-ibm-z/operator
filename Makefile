@@ -50,7 +50,11 @@ endif
 # Required to prevent `FROM SCRATCH` from pulling an amd64 image in the build phase.
 ifeq ($(ARCH),arm64)
 	TARGET_PLATFORM=arm64/v8
-else
+endif
+ifeq ($(ARCH),s390x)
+	TARGET_PLATFORM=s390x
+endif
+ifeq ($(ARCH),amd64)
 	TARGET_PLATFORM=amd64
 endif
 EXTRA_DOCKER_ARGS += --platform=linux/$(TARGET_PLATFORM)
